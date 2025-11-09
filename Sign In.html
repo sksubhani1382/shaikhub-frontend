@@ -11,7 +11,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
   <link rel="stylesheet" href="Mystyles1.css">
-  <script src="script1.js" defer></script>
+
 
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -26,19 +26,11 @@
     <h1 style="font-family:Georgia, 'Times New Roman', Times, serif;"><img border="3" class="logo"
         src="shoplandlogo3.jpg" width="50" height="50">SHOP HUB</h1>
   </center>
-  <nav>
-    <ul style="text-align: left;">
-      <li><a href="Home.html">Home</a></li>
-      <li><a href="About Us.html">About Us</a></li>
-      <li><a href="Contact Us.html">Contact Us</a></li>
 
-    </ul>
-    <ul style="text-align: right;">
-      <li><a href="Registration.html">Registration</a></li>
-      <li><a href="Sign In.html">Sign In</a></li>
-      <li><a href="Cart.html">Cart (<span id="cart-count">0</span>)</a></li>
-    </ul>
-  </nav><br><br><br>
+  <!-- Navbar will appear here -->
+  <div id="nav-root"></div>
+  <script src="nav.js"></script>
+  <br><br><br>
 
 
 
@@ -109,9 +101,25 @@
     });
   </script><br><br><br><br>
 
+  <script src="auth.js"></script>
+  <script>
+    document.querySelector("form").addEventListener("submit", loginUser);
+  </script>
+
   <footer>
     <p>@copy;www.sksshophub.com All Rights Are Reserved...</p>
   </footer>
+
+  <script>
+    document.getElementById("profileIcon")?.addEventListener("click", function (event) {
+      event.preventDefault();
+      const popup = document.getElementById("profilePopup");
+      popup.style.display = popup.style.display === "none" ? "block" : "none";
+    });
+  </script>
+
+
+
 </body>
 
 </html>

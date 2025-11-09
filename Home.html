@@ -61,6 +61,38 @@
             padding-right: 15px;
             margin-bottom: 30px;
         }
+
+
+        /* Profile popup 
+        .profile-popup {
+            position: absolute;
+            right: 20px;
+            top: 70px;
+            background: #fff;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .2);
+            padding: 15px 20px;
+            z-index: 999;
+            width: 220px;
+        }
+
+        .profile-popup h4 {
+            margin: 0 0 6px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .profile-popup p {
+            margin: 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .profile-popup .btn {
+            margin-top: 10px;
+            width: 100%; 
+        }   */
     </style>
 
 </head>
@@ -70,18 +102,12 @@
         <h1 style="font-family:Georgia, 'Times New Roman', Times, serif;"><img border="3" class="logo"
                 alt="image Not Found" src="shoplandlogo3.jpg" width="50" height="50">SHOP HUB</h1>
     </center>
-    <nav>
-        <ul style="text-align: left;">
-            <li><a href="Home.html"><i class="fa fa-house"></i>Home</a></li>
-            <li><a href="About Us.html">About Us</a></li>
-            <li><a href="Contact Us.html">Contact Us</a></li>
-        </ul>
-        <ul style="text-align: right;">
-            <li><a href="Registration.html">Registration</a></li>
-            <li><a href="Sign In.html">Sign In</a></li>
-            <li><a href="Cart.html">Cart (<span id="cart-count">0</span>)</a></li>
-        </ul>
-    </nav>
+
+
+    <!-- Navbar will appear here -->
+    <div id="nav-root"></div>
+    <script src="nav.js"></script>
+
 
     <center>
         <h1 style="color:rgb(241, 105, 105)">Products For You</h1>
@@ -256,6 +282,16 @@
     <footer>
         <p>@copy;www.sksshophub.com All Rights Are Reserved...</p>
     </footer>
+
+    <script>
+        document.getElementById("profileIcon")?.addEventListener("click", function (event) {
+            event.preventDefault();
+            const popup = document.getElementById("profilePopup");
+            popup.style.display = popup.style.display === "none" ? "block" : "none";
+        });
+    </script>
+
+
 </body>
 
 </html>

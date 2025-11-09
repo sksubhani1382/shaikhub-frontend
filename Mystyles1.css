@@ -1,3 +1,40 @@
+/* Profile popup styling */
+.profile-popup {
+  position: absolute;
+  right: 20px;
+  top: 70px;
+  background: white;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 15px 20px;
+  z-index: 999;
+  width: 220px;
+}
+
+.profile-popup h4 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  color: #333;
+}
+
+.profile-popup p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.profile-popup .btn {
+  margin-top: 10px;
+  width: 100%;
+}
+
+
+
+
+
+
+
 .header-container {
   display: flex;
   align-items: center;

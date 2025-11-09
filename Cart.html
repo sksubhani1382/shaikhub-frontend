@@ -18,18 +18,11 @@
     <h1 style="font-family:Georgia, 'Times New Roman', Times, serif;"><img border="3" class="logo"
         src="shoplandlogo3.jpg" width="50" height="50">SHOP HUB</h1>
   </center>
-  <nav>
-    <ul style="text-align: left;">
-      <li><a href="Home.html"><i class="fa fa-house"></i>Home</a></li>
-      <li><a href="About Us.html">About Us</a></li>
-      <li><a href="Contact Us.html">Contact Us</a></li>
-    </ul>
-    <ul style="text-align: right;">
-      <li><a href="Registration.html">Registration</a></li>
-      <li><a href="Sign In.html">Sign In</a></li>
-      <li><a href="Cart.html">Cart (<span id="cart-count">0</span>)</a></li>
-    </ul>
-  </nav>
+
+  <!-- Navbar will appear here -->
+  <div id="nav-root"></div>
+  <script src="nav.js"></script>
+
 
   <center>
     <h1 style="color:rgb(241, 105, 105)">Your Cart</h1>
@@ -99,6 +92,15 @@
 
     window.onload = loadCart;
   </script>
+
+  <script>
+    document.getElementById("profileIcon")?.addEventListener("click", function (event) {
+      event.preventDefault();
+      const popup = document.getElementById("profilePopup");
+      popup.style.display = popup.style.display === "none" ? "block" : "none";
+    });
+  </script>
+
 
 </body>
 

@@ -52,3 +52,84 @@ window.onload = function () {
     updateCartCount();
     loadCartPage();
 }
+
+
+
+// === PROFILE UI HANDLING ===
+function applyAuthUI() {
+    const token = localStorage.getItem("token");
+    const name = localStorage.getItem("userName") || "Profile";
+
+    const profileMenu = document.getElementById("profileMenu");
+    const registerLink = document.getElementById("registerLink");
+    const signInLink = document.getElementById("signInLink");
+    const userNameSpan = document.getElementById("userName");
+
+    if (!profileMenu || !registerLink || !signInLink || !userNameSpan) return;
+
+    if (token) {
+        profileMenu.style.display = "inline";
+        registerLink.style.display = "none";
+        signInLink.style.display = "none";
+        userNameSpan.textContent = name;
+    } else {
+        profileMenu.style.display = "none";
+        registerLink.style.display = "inline";
+        signInLink.style.display = "inline";
+    }
+}
+
+let profilePopupOpen = false;
+function toggleProfilePopup() {
+    const popup = document.getElementById("profilePopup");
+    if (!popup) return;
+
+    if (profilePopupOpen) {
+        popup.style.display = "none";
+        profilePopupOpen = false;
+    } else {
+        loadProfilePopup();
+        popup.style.display = "block";
+        profilePopupOpen = true;
+    }
+}
+
+async function loadProfilePopup() {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    try {
+        const res = await fetch("http://localhost:9090/api/user/profile", {
+            headers: { "Authorization": "Bearer " + token }
+        });
+        if (res.ok) {
+            const user = await res.json();
+            document.getElementById("popupName").textContent = user.name;
+            document.getElementById("popupEmail").textContent = user.email;
+            localStorage.setItem("userName", user.name);
+            document.getElementById("userName").textContent = user.name;
+        }
+    } catch (err) {
+        console.error("Error fetching user profile:", err);
+    }
+}
+
+function logoutUser() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userName");
+    alert("You have been logged out!");
+    applyAuthUI();
+    window.location.href = "Sign In.html";
+}
+
+window.addEventListener("click", function (e) {
+    const popup = document.getElementById("profilePopup");
+    const menu = document.getElementById("profileMenu");
+    if (!popup || !menu) return;
+    if (profilePopupOpen && !popup.contains(e.target) && !menu.contains(e.target)) {
+        popup.style.display = "none";
+        profilePopupOpen = false;
+    }
+});
+
+document.addEventListener("DOMContentLoaded", applyAuthUI);
