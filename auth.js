@@ -13,11 +13,14 @@ async function registerUser(event) {
     }
 
     try {
-        const response = await fetch("http://localhost:9090/api/auth/register", {
+
+        // ---- REGISTER FUNCTION ----
+        const response = await fetch("https://sksshophub-backend.onrender.com/api/auth/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name, email, mobile, password })
         });
+
 
         const data = await response.json();
 
@@ -73,11 +76,13 @@ async function loginUser() {
     }
 
     try {
-        const response = await fetch("http://localhost:9090/api/auth/login", {
+        // ---- LOGIN FUNCTION ----
+        const response = await fetch("https://sksshophub-backend.onrender.com/api/auth/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password }),
         });
+
 
         const data = await response.json();
 
