@@ -91,7 +91,7 @@ async function loginUser() {
             localStorage.setItem("token", data.token);
             localStorage.setItem("username", data.name);
             localStorage.setItem("email", data.email);
-            window.location.href = "https://sksubhani1382.github.io/sksshophub/Home.html";
+            window.location.href = "https://sksubhani1382.github.io/sksshophub-frontend/Home.html";
 
         } else {
             alert(`❌ Invalid credentials: ${data.error || data.message || "Please check email or password"}`);
