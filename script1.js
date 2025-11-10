@@ -99,7 +99,7 @@ async function loadProfilePopup() {
     if (!token) return;
 
     try {
-        const res = await fetch("http://localhost:9090/api/user/profile", {
+        const res = await fetch(`${backendBaseUrl}/api/user/profile`, {
             headers: { "Authorization": "Bearer " + token }
         });
         if (res.ok) {

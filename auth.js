@@ -15,7 +15,8 @@ async function registerUser(event) {
     try {
 
         // ---- REGISTER FUNCTION ----
-        const response = await fetch("https://sksshophub-backend.onrender.com/api/auth/register", {
+        const backendBaseUrl = "http://localhost:8082";
+        const response = await fetch(`${backendBaseUrl}/api/auth/register`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name, email, mobile, password })
@@ -77,11 +78,14 @@ async function loginUser() {
 
     try {
         // ---- LOGIN FUNCTION ----
-        const response = await fetch("https://sksshophub-backend.onrender.com/api/auth/login", {
+        const backendBaseUrl = "http://localhost:8082";
+        // LOGIN
+        const response = await fetch(`${backendBaseUrl}/api/auth/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ email, password })
         });
+
 
 
         const data = await response.json();
@@ -91,9 +95,9 @@ async function loginUser() {
             localStorage.setItem("token", data.token);
             localStorage.setItem("username", data.name);
             localStorage.setItem("email", data.email);
-            window.location.href = "https://sksubhani1382.github.io/sksshophub-frontend/Home.html";
-
-        } else {
+            window.location.href = "Home.html"; // redirect to home
+        }
+        else {
             alert(`❌ Invalid credentials: ${data.error || data.message || "Please check email or password"}`);
         }
     } catch (error) {
