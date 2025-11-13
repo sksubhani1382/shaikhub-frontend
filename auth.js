@@ -1,6 +1,3 @@
-// ======================
-// BACKEND BASE URL (Render)
-// ======================
 const backendBaseUrl = "https://shaikhub-backend.onrender.com";
 
 // ---- REGISTER FUNCTION ----
@@ -33,28 +30,11 @@ async function registerUser(event) {
             alert("❌ " + (data.error || data.message || "Registration failed"));
         }
     } catch (err) {
-        alert("⚠️ Backend not reachable.");
+        alert("⚠️ Backend not reachable. Please check your backend.");
         console.error("Register Error:", err);
     }
 }
 
-
-// ================= GLOBAL LOGIN HANDLER =================
-document.addEventListener("DOMContentLoaded", () => {
-    const token = localStorage.getItem("token");
-    const username = localStorage.getItem("username");
-    const email = localStorage.getItem("email");
-
-    if (token) {
-        document.getElementById("profileMenu").style.display = "inline";
-        document.getElementById("userName").innerText = username;
-        document.getElementById("popupName").innerText = username;
-        document.getElementById("popupEmail").innerText = email;
-    }
-});
-
-
-// ================= LOGIN FUNCTION =================
 async function loginUser() {
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
@@ -75,25 +55,17 @@ async function loginUser() {
 
         if (response.ok) {
             alert("✅ Login Successful!");
-
             localStorage.setItem("token", data.token);
             localStorage.setItem("username", data.name);
             localStorage.setItem("email", data.email);
 
             window.location.href = "Home.html";
-        } else {
+        }
+        else {
             alert(`❌ Invalid credentials: ${data.error || data.message}`);
         }
-    } catch (error) {
-        alert("⚠️ Server error: " + error.message);
-        console.error("Login Error:", error);
+    } catch (err) {
+        alert("⚠️ Backend not reachable.");
+        console.error(err);
     }
-}
-
-
-// ================= LOGOUT FUNCTION =================
-function logoutUser() {
-    localStorage.clear();
-    alert("👋 You have been logged out successfully.");
-    window.location.href = "Sign In.html";
 }
