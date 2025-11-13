@@ -1,3 +1,8 @@
+// ======================
+// BACKEND BASE URL (Render)
+// ======================
+const backendBaseUrl = "https://shaikhub-backend.onrender.com";
+
 // ---- REGISTER FUNCTION ----
 async function registerUser(event) {
     event.preventDefault();
@@ -13,15 +18,11 @@ async function registerUser(event) {
     }
 
     try {
-
-        // ---- REGISTER FUNCTION ----
-        const backendBaseUrl = "http://localhost:8082";
         const response = await fetch(`${backendBaseUrl}/api/auth/register`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name, email, mobile, password })
         });
-
 
         const data = await response.json();
 
@@ -32,11 +33,10 @@ async function registerUser(event) {
             alert("❌ " + (data.error || data.message || "Registration failed"));
         }
     } catch (err) {
-        alert("⚠️ Backend not reachable. Please check your Spring Boot app.");
+        alert("⚠️ Backend not reachable.");
         console.error("Register Error:", err);
     }
 }
-
 
 
 // ================= GLOBAL LOGIN HANDLER =================
@@ -45,28 +45,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const username = localStorage.getItem("username");
     const email = localStorage.getItem("email");
 
-    const profileMenu = document.getElementById("profileMenu");
-    const popupName = document.getElementById("popupName");
-    const popupEmail = document.getElementById("popupEmail");
-
-    // Show or hide profile menu
-    if (token && username) {
-        if (profileMenu) {
-            profileMenu.style.display = "inline";
-            document.getElementById("userName").innerText = username;
-        }
-        if (popupName && popupEmail) {
-            popupName.innerText = username;
-            popupEmail.innerText = username; // show username instead of email
-        }
-    } else {
-        if (profileMenu) profileMenu.style.display = "none";
+    if (token) {
+        document.getElementById("profileMenu").style.display = "inline";
+        document.getElementById("userName").innerText = username;
+        document.getElementById("popupName").innerText = username;
+        document.getElementById("popupEmail").innerText = email;
     }
 });
 
 
-
-// ================= LOGIN SUCCESS HANDLER =================
+// ================= LOGIN FUNCTION =================
 async function loginUser() {
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
@@ -77,28 +65,24 @@ async function loginUser() {
     }
 
     try {
-        // ---- LOGIN FUNCTION ----
-        const backendBaseUrl = "http://localhost:8082";
-        // LOGIN
         const response = await fetch(`${backendBaseUrl}/api/auth/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password })
         });
 
-
-
         const data = await response.json();
 
         if (response.ok) {
             alert("✅ Login Successful!");
+
             localStorage.setItem("token", data.token);
             localStorage.setItem("username", data.name);
             localStorage.setItem("email", data.email);
-            window.location.href = "Home.html"; // redirect to home
-        }
-        else {
-            alert(`❌ Invalid credentials: ${data.error || data.message || "Please check email or password"}`);
+
+            window.location.href = "Home.html";
+        } else {
+            alert(`❌ Invalid credentials: ${data.error || data.message}`);
         }
     } catch (error) {
         alert("⚠️ Server error: " + error.message);
@@ -109,9 +93,7 @@ async function loginUser() {
 
 // ================= LOGOUT FUNCTION =================
 function logoutUser() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("username");
-    localStorage.removeItem("email");
+    localStorage.clear();
     alert("👋 You have been logged out successfully.");
     window.location.href = "Sign In.html";
 }
