@@ -1,6 +1,7 @@
+// BACKEND URL (Render)
 const backendBaseUrl = "https://shaikhub-backend.onrender.com";
 
-// ---- REGISTER FUNCTION ----
+// ---------------- REGISTER FUNCTION ----------------
 async function registerUser(event) {
     event.preventDefault();
 
@@ -30,11 +31,13 @@ async function registerUser(event) {
             alert("❌ " + (data.error || data.message || "Registration failed"));
         }
     } catch (err) {
-        alert("⚠️ Backend not reachable. Please check your backend.");
+        alert("⚠️ Backend not reachable.");
         console.error("Register Error:", err);
     }
 }
 
+
+// ---------------- LOGIN FUNCTION ----------------
 async function loginUser() {
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
@@ -60,8 +63,7 @@ async function loginUser() {
             localStorage.setItem("email", data.email);
 
             window.location.href = "Home.html";
-        }
-        else {
+        } else {
             alert(`❌ Invalid credentials: ${data.error || data.message}`);
         }
     } catch (err) {
