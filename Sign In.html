@@ -55,48 +55,32 @@
 
 
   <script>
-    // JavaScript Validation using Alerts
     document.addEventListener('DOMContentLoaded', function () {
       const form = document.getElementById('signInForm');
 
       form.addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault();
 
-        // Get the values of the form fields
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
-        // Perform validations
-        if (!email) {
-          alert('Email is required.');
+        if (!email || !validateEmail(email)) {
+          alert('Enter valid email');
           return;
         }
 
-        if (!validateEmail(email)) {
-          alert('Please enter a valid email address.');
+        if (!password || password.length < 6) {
+          alert('Password must be at least 6 characters');
           return;
         }
 
-        if (!password) {
-          alert('Password is required.');
-          return;
-        }
-
-        if (password.length < 6) {
-          alert('Password must be at least 6 characters long.');
-          return;
-        }
-
-        // If all validations pass
-
-        alert('Sign In Successful!');
-        // You can add further logic here, such as redirecting the user or submitting the form data to a server
+        // ✅ If validation passes → call backend login
+        loginUser(event);
       });
 
-      // Simple email validation function
       function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(String(email).toLowerCase());
+        return re.test(email.toLowerCase());
       }
     });
   </script><br><br><br><br>
