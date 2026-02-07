@@ -74,8 +74,8 @@
           return;
         }
 
-        // ✅ If validation passes → call backend login
-        loginUser(event);
+        // ✅ Call login only once
+        loginUser();
       });
 
       function validateEmail(email) {
@@ -86,9 +86,7 @@
   </script><br><br><br><br>
 
   <script src="auth.js"></script>
-  <script>
-    document.querySelector("form").addEventListener("submit", loginUser);
-  </script>
+
 
   <footer>
     <p>@copy;www.shaikhub.com All Rights Are Reserved...</p>

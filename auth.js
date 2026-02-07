@@ -38,7 +38,12 @@ async function registerUser(event) {
 
 
 // ---------------- LOGIN FUNCTION ----------------
+let loginInProgress = false;
+
 async function loginUser() {
+
+    if (loginInProgress) return;
+    loginInProgress = true;
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
 
@@ -69,5 +74,8 @@ async function loginUser() {
     } catch (err) {
         alert("⚠️ Backend not reachable.");
         console.error(err);
+    }
+    finally {
+        loginInProgress = false;
     }
 }
