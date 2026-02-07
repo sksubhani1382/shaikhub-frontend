@@ -189,6 +189,26 @@ body {
   overflow-x: hidden;
 }
 
+/* Password Toggle Icon */
+
+.password-box {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  user-select: none;
+}
+
+.toggle-password:hover {
+  opacity: 0.7;
+}
+
 
 /* Registration Form Styles */
 
