@@ -95,6 +95,31 @@
 
   <script src="auth.js"></script>
 
+  <script>
+    window.addEventListener("load", function () {
+
+      const togglePassword = document.getElementById("togglePassword");
+      const passwordInput = document.getElementById("password");
+
+      if (!togglePassword || !passwordInput) {
+        console.error("Toggle elements not found");
+        return;
+      }
+
+      togglePassword.addEventListener("click", function () {
+
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          this.textContent = "🙈";
+        } else {
+          passwordInput.type = "password";
+          this.textContent = "👁️";
+        }
+
+      });
+
+    });
+  </script>
 
   <footer>
     <p>@copy;www.shaikhub.com All Rights Are Reserved...</p>
@@ -107,27 +132,6 @@
       popup.style.display = popup.style.display === "none" ? "block" : "none";
     });
   </script>
-
-  document.addEventListener("DOMContentLoaded", function () {
-
-  const togglePassword = document.getElementById("togglePassword");
-  const passwordInput = document.getElementById("password");
-
-  if (togglePassword && passwordInput) {
-
-  togglePassword.addEventListener("click", function () {
-
-  const type = passwordInput.type === "password" ? "text" : "password";
-
-  passwordInput.type = type;
-
-  this.textContent = type === "password" ? "👁️" : "🙈";
-  });
-
-  }
-  });
-
-
 
 </body>
 
